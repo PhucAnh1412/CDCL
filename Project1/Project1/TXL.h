@@ -14,12 +14,14 @@ public:
 	TXL(string stopword);
 	~TXL();
 
-	string toLower(string s);
-	bool stopWordFound(string s);
+	
 	string tienXuLy(string doc);
 private:
 	vector<string> stopWords;
 	stemming::english_stem<char, std::char_traits<char>> Stem;
+
+	string toLower(string s);
+	bool stopWordFound(string s);
 };
 
 #endif

@@ -12,40 +12,28 @@ using namespace std;
 class BOW
 {
 public:
-	BOW(string input_doc, string round, string stopword);
+	BOW(string input_doc, string stopword);
 	~BOW();
 	void tf_idf(string doc, double* v);
-	void timKiem(string doc, int k);
-private:
-	TXL txl;
-	double* idf_feat;
-	double** tfidf_doc;
-	int round_num;
+	int* timKiem(string doc, string mode);
+
 	int n_doc;
 	int n_feat;
 	vector<string> docs;
 	vector<string> features;
+
+	double* idf_feat;
+	double** tfidf_doc;
+
+private:
+	TXL txl;
+	int round_num;
+	
+	void QuickSort_inc(double* Data, int l, int r, int* top);
+	void QuickSort_dec(double* Data, int l, int r, int* top);
 };
 
-double dotuongtu_e(double* k, double* d, int n)
-{
-	double t = 0;
-	for (int i = 0; i < n; ++i)
-	{
-		t = t + (k[i] - d[i])*(k[i] - d[i]);
-	}
+double dotuongtu_e(double* k, double* d, int n);
+double dotuongtu_c(double* k, double* d, int n);
 
-	return sqrt(t);
-}
-double dotuongtu_c(double* k, double* d, int n)
-{
-	double ddk = 0, ddd = 0, t = 0;
-	for (int i = 0; i < n; ++i)
-	{
-		t = t + k[i] * d[i];
-		ddk = ddk + k[i] * k[i];
-		ddd = ddd + d[i] * d[i];
-	}
-	return (t / (sqrt(ddk)*sqrt(ddd)));
-}
 #endif

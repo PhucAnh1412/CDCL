@@ -11,7 +11,7 @@ TXL::TXL(string stopword)
 		while (istop >> str)
 		{
 			str = TXL::toLower(str);
-			if (!stopWordFound) stopWords.push_back(str);
+			if (!stopWordFound(str)) stopWords.push_back(str);
 		}
 	}
 	istop.close();
